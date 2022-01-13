@@ -2,7 +2,7 @@ using System.Net.Http.Headers;
 
 namespace WebApp.TodoAPI.Helpers;
 
-public record JwtClass(bool isValid);
+public record JWT(bool isValid);
 public static class ValidateTokenWithAuthApi
 {
     public static async Task<bool> ValidateJwtToken(HttpContext context)
@@ -14,7 +14,7 @@ public static class ValidateTokenWithAuthApi
         client.DefaultRequestHeaders.Add("Jwt", token);
         var responseMessage = await client.GetAsync(uri);
         
-        var responseBody = await responseMessage.Content.ReadFromJsonAsync<JwtClass>();
+        var responseBody = await responseMessage.Content.ReadFromJsonAsync<JWT>();
 
         if (responseBody is not null)
         {
