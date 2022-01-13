@@ -34,7 +34,7 @@ public class Api
     }
 
     [HttpGet("{id}")]
-    [AuthNotRequired]
+    [AuthRequired]
     public async Task<IActionResult> GetOneTodoById(int id)
     {
         var todo = await _mediator.Send(new GetOneTodoByIdQuery(id));
